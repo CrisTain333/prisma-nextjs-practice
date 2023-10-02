@@ -1,4 +1,5 @@
 import { prisma } from "@/global/prisma";
+import CreateUser from "./components/CreateUser";
 
 export default async function Home() {
   const users = await prisma.user.findMany();
@@ -7,12 +8,16 @@ export default async function Home() {
 
   return (
     <>
+      <div>
+        <CreateUser />
+      </div>
+
       <h2 className="text-5xl text-center mt-20">
         All Users
       </h2>
       {users.map((user) => (
         <p className="text-3xl my-3 font-semibold text-amber-400">
-          Hello {user.name}
+          Hello {user.id}.{user.name}
         </p>
       ))}
     </>
